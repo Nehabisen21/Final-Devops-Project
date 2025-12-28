@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: phoenix-config
+  namespace: projectns
+data:
+  PHOENIX_DB_HOST: postgres-postgresql.database.svc.cluster.local
+  PHOENIX_DB_PORT: "5432"
+  PHOENIX_DB_NAME: appdb
+  PHOENIX_DB_USER: appuser
+  PHOENIX_WORKING_DIR: /var/lib/phoenix

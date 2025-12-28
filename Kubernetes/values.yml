@@ -1,0 +1,38 @@
+global:
+  postgresql:
+    auth:
+      username: appuser
+      password: StrongAppPassword@123
+      database: appdb
+      postgresPassword: StrongRootPassword@123
+
+architecture: standalone
+
+image:
+  registry: docker.io
+  repository: bitnami/postgresql
+  tag: latest            # ✅ VALID & STABLE TAG
+  pullPolicy: IfNotPresent
+
+primary:
+  persistence:
+    enabled: true
+    storageClass: gp3
+    size: 20Gi
+
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+
+service:
+  type: ClusterIP
+  ports:
+    postgresql: 5432
+
+
+##kubectl exec -it postgres-postgresql-0 -n database -- psql -U postgres
+#####StrongRootPassword@123 then \c appdb

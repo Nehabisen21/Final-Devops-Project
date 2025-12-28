@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Details</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            padding: 40px;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f1f1f1;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>User Details</h2>
+        <button onclick="loadUsers()">Load Users</button>
+        <ul id="userList"></ul>
+    </div>
+
+    <script>
+        function loadUsers() {
+            fetchfetch("/api/users")
+                .then(response => response.json())
+                .then(data => {
+                    const list = document.getElementById("userList");
+                    list.innerHTML = "";
+                    data.forEach(user => {
+                        const li = document.createElement("li");
+                        li.textContent = user.name;
+                        list.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    alert("Backend not reachable");
+                    console.error(error);
+                });
+        }
+    </script>
+</body>
+
+</html>
