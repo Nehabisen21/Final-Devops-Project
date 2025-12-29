@@ -28,7 +28,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: phoenix-secret
-                  key: PHOENIX_SQL_DATABASE_PASSWORD
+                  key: PHOENIX_DB_PASSWORD
 ---
 apiVersion: v1
 kind: Service
@@ -36,9 +36,10 @@ metadata:
   name: phoenix-service
   namespace: projectns
 spec:
+  type: NodePort
   selector:
     app: phoenix
   ports:
     - port: 6006
       targetPort: 6006
-  type: ClusterIP
+      nodePort: 30606
