@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: phoenix
-          image: arizephoenix/phoenix:0.7.0
+          image: arizephoenix/phoenix:latest
           ports:
             - containerPort: 6006
 
